@@ -77,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
               }
             },
             icon: const Icon(
-              Icons.foggy,
+              Icons.location_on,
               size: 30,
             ),
           ),
@@ -86,9 +86,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: () async {
                   try{
                     FocusScope.of(context).unfocus();
-                    String cityName = await Navigator.push(context, MaterialPageRoute(builder: (context) => CityScreen()));
-                    Map data = await networking.getCityWeather(cityName);
-                    updateUi(data);
+                    String? cityName = await Navigator.push(context, MaterialPageRoute(builder: (context) => CityScreen()));
+                    if(cityName != null){
+                      Map data = await networking.getCityWeather(cityName);
+                      updateUi(data);
+                    }
                   }
                   catch(e){
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('$e',style: kErrorTextStyle,)));
@@ -96,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                 },
                 icon: const Icon(
-                  Icons.location_on,
+                  Icons.location_city,
                   color: Colors.black87,
                   size: 30,
                 ))
