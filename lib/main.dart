@@ -19,6 +19,3 @@ class MyApp extends StatelessWidget {
 
 
 
-
-// const String apiKey = 'f7d81d02538427786afe569f7b95cc6b';
-// const String fronturl = 'https://api.openweathermap.org/data/2.5/weather';

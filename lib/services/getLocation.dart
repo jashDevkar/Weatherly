@@ -2,6 +2,7 @@
 import 'package:geolocator/geolocator.dart';
 
 
+
 Future<Position> getLocation()async{
   bool serviceEnabled;
   LocationPermission permission;
@@ -31,6 +32,5 @@ Future<Position> getLocation()async{
   else{
     return Future.error('Service not enabled');
   }
-
 
 }
