@@ -1,12 +1,17 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:weatherly/services/getLocation.dart';
+import 'package:weatherly/services/get_location.dart';
 import 'package:weatherly/services/weather.dart';
 
-const String apiKey = 'f7d81d02538427786afe569f7b95cc6b';
-const String fronturl = 'https://api.openweathermap.org/data/2.5/weather';
 
+/*
 
+this file is responsible for managing data recieved from weather file
+
+this file will request weather data based on location or based on city name
+
+*/
 
 
 class Networking{
@@ -18,7 +23,7 @@ class Networking{
       Position position = await getLocation();
       longitude = position.longitude;
       latitude = position.latitude;
-      Weather weather = Weather(url: '$fronturl?lat=$latitude&lon=$longitude&appid=$apiKey&units=metric');
+      Weather weather = Weather(url: '${dotenv.env['FRONT_URL']}?lat=$latitude&lon=$longitude&appid=${dotenv.env['API_KEY']}&units=metric');
       var data =await  weather.requestData();
       return data;
     }
@@ -29,7 +34,7 @@ class Networking{
 
   Future<Map> getCityWeather(String cityName)async{
     try{
-      Weather weather = Weather(url: '$fronturl?q=$cityName&appid=$apiKey&units=metric');
+      Weather weather = Weather(url: '${dotenv.env['FRONT_URL']}?q=$cityName&appid=${dotenv.env['API_KEY']}&units=metric');
       var data = await weather.requestData();
       return data;
     }

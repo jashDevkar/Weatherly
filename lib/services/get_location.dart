@@ -1,5 +1,12 @@
-
 import 'package:geolocator/geolocator.dart';
+
+
+/*
+
+this file will ask for location persmision from user
+if permision is deied than it will throw error
+
+*/
 
 
 
